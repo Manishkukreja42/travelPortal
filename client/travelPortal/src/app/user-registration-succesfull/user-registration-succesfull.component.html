@@ -1,0 +1,44 @@
+<h1>Registration Confirmation</h1>
+<hr>
+<h2>Thank you for registering,the admin will contact you shortly with username and password</h2>
+<hr>
+<div class="container">
+    <label>FirstName :</label>
+    <label>{{user.firstName}} {{user.lastName}}</label>
+    <br>
+    <label>BusinessUnit:</label>
+    <label>{{user.businessUnit}}</label>
+    <br>
+    <label>Title :</label>
+    <label>{{user.title}}</label>
+    <br>
+    <label>E-mail :</label>
+    <label>{{user.email}}</label>
+    <br>
+    <label>Telephone:</label>
+    <label>{{user.telephone}}</label>
+    <br>
+    <label>Address1:</label>
+    <label>{{user.address1}}</label>
+    <br>
+    <label>Address2 :</label>
+    <label>{{user.address2}}</label>
+    <br>
+    <label>City :</label>
+    <label>{{user.city}}</label>
+    <br>
+    <label>State :</label>
+    <label>{{user.state}}</label>
+    <br>
+    <label>Zip :</label>
+    <label>{{user.zip}}</label>
+    <br>
+    <label>Country :</label>
+    <label>{{user.country}}</label>
+    <br>
+    <button>print</button>
+    <button (click)="edit()">Edit</button>
+    <button (click)="homepage()">Return to Homepage</button>
+    
+</div>
+

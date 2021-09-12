@@ -1,0 +1,27 @@
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">email id</th>
+            <th scope="col">Priority</th>
+            <th scope="col">expense Borne</th>
+            <th scope="col">ticket state</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+         
+          <tr *ngFor="let ticket of ticketList">
+            <td scope="col">{{ticket.emailId}}</td>
+            <td  scope="col">{{ticket.priority}}</td>
+            <td scope="col">{{ticket.expenseBorne}}</td>
+            <td scope="col">{{ticket.ticketState}}</td>
+            <td scope="col"><button class="btn btn-primary" (click)="accept(ticket)">Accept </button><button class="btn btn-primary" (click)="edit(ticket)">View </button>
+                <button class="btn btn-primary" (click)="reject(ticket)">Reject </button>
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>

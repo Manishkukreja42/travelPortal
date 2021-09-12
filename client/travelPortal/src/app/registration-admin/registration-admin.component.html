@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Admin registration</h1>
+    {{msg}}
+    <form #adminRegisterForm="ngForm" (ngSubmit)="registerUser()">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" placeholder="Enter email" name="email" [(ngModel)]="admin.email" required #email="ngModel" pattern=".+@nagarro.com" [class.is-invalid]="email.invalid && email.touched">
+        </div>
+
+        <div *ngIf="email.errors && (email.invalid && email.touched)">
+            <small class="text-danger" *ngIf="email.errors.required">Email id is required</small>
+            <small class="text-danger" *ngIf="email.errors.pattern">Enter the valid email Id</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="admin.password" required #password="ngModel"
+            [class.is-invalid]="password.invalid && password.touched">
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Enter password again</label>
+            <input type="password" class="form-control" placeholder="Enter password" name="cpassword" #cPassword="ngModel" (ngModel)="admin.password" required [class.is-invalid]="cPassword.invalid && cPassword.touched" >
+            <!-- <small class="text-danger" [class.d-none]="newPassword.valid || newPassword.untouched">Password is required</small> -->
+            <small class="text-danger" [class.d-none]="password.value==cPassword.value || cPassword.untouched">Password doesnot match</small>
+        </div>
+        <button type="submit" [disabled]="adminRegisterForm.invalid || password.value!=cPassword.value || password.value==''" class="btn btn-primary" >Login</button>
+    </form>
+</div>

@@ -1,0 +1,115 @@
+<!-- <p>registration-user works!</p> -->
+
+<!-- <div *ngFor="let country of countries">
+    <h1>{{country}}</h1>
+</div>  -->
+
+<div class="container">
+    <h1>User registration</h1>
+    <h5 class="text-danger">{{this.msg}}</h5>
+    <!-- {{msg}} -->
+    <form #userRegisterForm="ngForm" (ngSubmit)="registerUser()">
+        <div class="form-group">
+            <label for="FirstName">FirstName</label>
+            <input type="text" class="form-control" placeholder="Enter FirstName" name="FirstName" [(ngModel)]="user.firstName" required #FirstName="ngModel"
+            [class.is-invalid]="FirstName.invalid && FirstName.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="FirstName.valid || FirstName.untouched">FirstName is required</small>
+        <div class="form-group">
+            <label for="LastName">LastName</label>
+            <input type="text" class="form-control" placeholder="Enter LastName" name="LastName" [(ngModel)]="user.lastName" required #LastName="ngModel"
+            [class.is-invalid]="LastName.invalid && LastName.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="LastName.valid || LastName.untouched">LastName is required</small>
+        <div class="form-group">
+            <label for="BusinessUnit">BusinessUnit</label>
+            <input type="text" class="form-control" placeholder="Enter BusinessUnit" name="BusinessUnit" [(ngModel)]="user.businessUnit" required #BusinessUnit="ngModel"
+            [class.is-invalid]="BusinessUnit.invalid && BusinessUnit.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="BusinessUnit.valid || BusinessUnit.untouched">BusinessUnit is required</small>
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" placeholder="Enter Title" name="Title" [(ngModel)]="user.title"  required #Title="ngModel"
+            [class.is-invalid]="Title.invalid && Title.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="Title.valid || Title.untouched">Title is required</small>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="text" class="form-control" placeholder="Enter Email" name="Email" [(ngModel)]="user.email" required #Email="ngModel" pattern=".+@nagarro.com"
+            [class.is-invalid]="Email.invalid && Email.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="Email.valid || Email.untouched">Email is required</small>
+    
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" minlength="4" maxlength="15" placeholder="Enter Password" name="Password" [(ngModel)]="user.password" required #Password="ngModel"
+           [class.is-invalid]="Password.invalid && Password.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="Password.valid || Password.untouched">Password is required</small>
+        <div class="form-group">
+            <label for="Telephone">Telephone</label>
+            <input type="number" class="form-control" placeholder="Telephone" maxlength="15" name="Telephone" [(ngModel)]="user.telephone" required #Telephone="ngModel"
+            [class.is-invalid]="Telephone.invalid && Telephone.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="Telephone.valid || Telephone.untouched">Telephone is required</small>
+        <div class="form-group">
+            <label for="Address1">Address 1</label>
+            <input type="text" class="form-control" placeholder="Address1" name="Address1" [(ngModel)]="user.address1" required #Address1="ngModel"
+            [class.is-invalid]="Address1.invalid && Address1.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="Address1.valid || Address1.untouched">Address1 is required</small>
+        <div class="form-group">
+            <label for="Address2">Address 2</label>
+            <input type="text" class="form-control" placeholder="Address2" name="Address2" [(ngModel)]="user.address2"  #Address2="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="City">City</label>
+            <input type="text" class="form-control" placeholder="City" name="City" [(ngModel)]="user.city" required #City="ngModel"
+            [class.is-invalid]="City.invalid && City.touched">
+        </div>
+        <small class="text-danger" [class.d-none]="City.valid || City.untouched">City is required</small>
+        <div class="form-group">
+            <label for="Country">Country</label>
+           <select name="Country" class="form-control" [(ngModel)]="user.country" (change)="onChangeCountry(user.country)" required #Country="ngModel"
+           [class.is-invalid]="Country.touched && Country.invalid">
+               <option value="">Select country</option>
+               <option *ngFor="let country of countries">{{country}}</option>
+           </select>
+        </div>
+        <small class="text-danger" [class.d-none]="Country.valid || Country.untouched">Country is required</small>
+
+        <div class="form-group">
+            <label for="State">State</label>
+            <select name="states" class="form-control" [(ngModel)]="user.state" required #State="ngModel"
+            [class.is-invalid]="State.touched && State.invalid" >
+                <option value="">Select states..</option>
+                <option *ngFor="let state of states">{{state}}</option>
+            </select>
+         </div>
+         <small class="text-danger" [class.d-none]="State.valid || State.untouched">State is required</small>
+         <div class="form-group">
+            <label for="Zip">Zip </label>
+            <input type="number" class="form-control" placeholder="Zip" name="Zip" [(ngModel)]="user.zip" minlength="6" maxlength="6" required #Zip="ngModel"
+            [class.is-invalid]="Zip.touched && Zip.invalid" >
+            <small class="text-danger" [class.d-none]="Zip.valid || Zip.untouched">Zip is required</small>
+        </div>
+        
+
+        
+        <!-- <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" placeholder="Enter password" name="password" [(ngModel)]="admin.password" required #password="ngModel"
+            [class.is-invalid]="password.invalid && password.touched">
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+        </div> -->
+        <!-- <div class="form-group">
+            <label for="password">Enter password again</label>
+            <input type="password" class="form-control" placeholder="Enter password" name="cpassword" #cPassword="ngModel" (ngModel)="admin.password" required [class.is-invalid]="cPassword.invalid && cPassword.touched" > -->
+            <!-- <small class="text-danger" [class.d-none]="newPassword.valid || newPassword.untouched">Password is required</small> -->
+            <!-- <small class="text-danger" [class.d-none]="password.value==cPassword.value || cPassword.untouched">Password doesnot match</small>
+        </div> -->
+        <button type="submit" [disabled]="userRegisterForm.invalid" class="btn btn-primary">Register</button>
+    </form>
+    <!-- <button (click)="getPdf()">download pdf</button> -->
+</div>
+

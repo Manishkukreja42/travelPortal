@@ -1,0 +1,77 @@
+<div class="container">
+<h3>{{msg}}</h3>
+<button class="btn btn-primary" (click)="registerTicket()">New Ticket?</button>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      
+        <th scope="col">email id</th>
+        <th scope="col">Priority</th>
+        <th scope="col">expense Borne</th>
+        <th scope="col">ticket state</th>
+        <th scope="col">Actions</th>
+    
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of ticketList | paginate :{
+      id:'listing_pagination',
+      itemsPerPage:5,
+      currentPage:page,
+      totalItems: totalRec
+    }">
+    <td >{{ticket.emailId}}</td>
+    <td >{{ticket.priority}}</td>
+    <td>{{ticket.expenseBorne}}</td>
+    <td>{{ticket.ticketState}}</td>
+    <td><button class="btn btn-primary" (click)="edit(ticket)">edit</button></td>
+
+    </tr>
+  </tbody>
+</table>
+<!-- <div>
+  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</div> -->
+<div>
+<pagination-controls  id="listing_pagination"
+                      (pageChange)="page = $event"
+                      (pageBoundsCorrection)="page = $event"
+                      maxSize="5"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
+<!-- <div class="container">
+<button class="btn btn-primary" (click)="registerTicket()">New Ticket?</button>
+</div>
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">email id</th>
+        <th scope="col">Priority</th>
+        <th scope="col">expense Borne</th>
+        <th scope="col">ticket state</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div *ngFor="let ticket of ticketList">
+      <tr>
+        <td scope="col">{{ticket.emailId}}</td>
+        <td  scope="col">{{ticket.priority}}</td>
+        <td>{{ticket.expenseBorne}}</td>
+        <td>{{ticket.ticketState}}</td>
+        <td><button class="btn btn-primary" (click)="edit(ticket)">edit</button></td>
+      </tr>
+    </div>
+    </tbody>
+  </table>
+</div> -->

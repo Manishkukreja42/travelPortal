@@ -1,0 +1,106 @@
+
+<div class="container">
+    <h1>Ticket Generator</h1>
+    <form #TicketForm="ngForm" (ngSubmit)="registerTicket()">
+        <div class="form-group">
+            <label for="Request">Request</label>
+           <select name="Request" class="form-control" [(ngModel)]="ticket.request"  required #Request="ngModel"
+           [class.is-invalid]="Request.touched && Request.invalid">
+               <option value="">Select Request</option>
+               <option >TravelTicket</option>
+               <option >HotelStay</option>
+               <option >Visa</option>
+               <option>Work permit</option>
+            </select>
+            <small class="text-danger" [class.d-none]="Request.valid || Request.untouched">This field is required</small>
+            
+        </div>
+        <div class="form-group">
+            <label for="Priority">Priority</label>
+           <select name="Priority" class="form-control" [(ngModel)]="ticket.priority"  required #Priority="ngModel"
+           [class.is-invalid]="Priority.touched && Priority.invalid">
+               <option value="">Select Request</option>
+               <option>Normal</option>
+               <option>Urgent</option>
+               <option>Immediate<option>
+            </select>
+            <small class="text-danger" [class.d-none]="Priority.valid ||Priority.untouched">This field is required</small>
+        </div>
+        <div class="form-group">
+            <label for="ToCity">ToCity</label>
+           <select name="ToCity" class="form-control" [(ngModel)]="ticket.toCity"  required #ToCity="ngModel"
+           [class.is-invalid]="ToCity.touched && ToCity.invalid">
+               <option value="">Select country</option>
+               <option *ngFor="let city of cities">{{city.city}}</option>
+           </select>
+           <small class="text-danger" [class.d-none]="ToCity.valid || ToCity.untouched">City is required</small>
+        </div>
+        <div class="form-group">
+            <label for="FromCities">From City</label>
+           <select name="FromCities" class="form-control" [(ngModel)]="ticket.fromCity"  required #FromCities="ngModel"
+           [class.is-invalid]="FromCities.touched && FromCities.invalid">
+               <option value="">Select country</option>
+               <option *ngFor="let city of cities">{{city.city}}</option>
+           </select>
+           <small class="text-danger" [class.d-none]="FromCities.valid || FromCities.untouched">City is required</small>
+        </div>
+        <div class="form-group">
+            <label>start date</label>
+            <input type="date" class="form-control" name="StartDate" [(ngModel)]="ticket.startDate" #StartDate="ngModel" required
+            [class.is-invalid]="StartDate.touched && StartDate.invalid" >
+            <small class="text-danger" [class.d-none]="StartDate.valid || StartDate.untouched">Start date is required</small>
+        </div>
+        <div class="form-group">
+            <label>End date</label>
+            <input type="date" class="form-control" name="EndDate" [(ngModel)]="ticket.endDate" #EndDate="ngModel" required
+            [class.is-invalid]="EndDate.touched && EndDate.invalid" >
+            <small class="text-danger" [class.d-none]="EndDate.valid || EndDate.untouched">Tentative end date is required</small>
+        </div>
+        <div class="form-group">
+            <label for="Passport">Passport</label>
+            <input type="text" class="form-control" placeholder="Passport" name="Passport" [(ngModel)]="ticket.passport" required #Passport="ngModel"
+            [class.is-invalid]="Passport.invalid && Passport.touched" maxlength="25">
+            <small class="text-danger" [class.d-none]="Passport.valid || Passport.untouched">Passport is required</small>
+        </div>
+        <div class="form-group">
+            <label for="ProjectName">ProjectName</label>
+            <input type="text" class="form-control" placeholder="ProjectName" name="ProjectName" [(ngModel)]="ticket.ProjectName" required #ProjectName="ngModel"
+            [class.is-invalid]="ProjectName.invalid && ProjectName.touched" maxlength="100">
+            <small class="text-danger" [class.d-none]="ProjectName.valid ||ProjectName.untouched">Start date is required</small>
+        </div>
+        <div class="form-group">
+            <label for="ExpenseBorne">ProjectName:-  </label>
+            <input type="radio" name="ExpenseBorne"   value="Nagarro" checked [(ngModel)]="ticket.expenseBorne" #ExpenseBorne="ngModel" />Nagarro
+            <input type="radio" name="ExpenseBorne"  value="Client" [(ngModel)]="ticket.expenseBorne" #ExpenseBorne="ngModel"/>Client
+            <!-- <small class="text-danger" [class.d-none]="ExpenseBorne.valid ||ExpenseBorne.untouched">Start date is required</small> -->
+            
+        </div>
+        <div class="form-group">
+            <label for="ApprovalName">ApprovalName</label>
+            <input type="text" class="form-control" placeholder="ApprovalName" name="ApprovalName" [(ngModel)]="ticket.approvalName" maxlength="100">
+        </div>
+        <div class="form-group">
+            <label for="ExpectedDuration">Expected Duration of Travel - In case exact return Date is not known</label>
+            <input type="text" class="form-control" placeholder="ExpectedDuration" name="ExpectedDuration" [(ngModel)]="ticket.expectedDuration" maxlength="100">
+        </div>
+        <div class="form-group">
+            <label for="UpperBounds">Any Upper Bound</label>
+           <select name="UpperBounds" class="form-control"  [(ngModel)]="upperbounds" #UpperBounds="ngModel">
+               <option value="">Select Request</option>
+               <option >Yes</option>
+               <option >No</option>
+            </select>
+            <div class="form-group" *ngIf="upperbounds=='Yes'">
+              <label>Mention the upper bound</label>  
+            <input class="form-control" type="text" [(ngModel)]="ticket.upperBound" >
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="AdditionalDetails">Additional Details</label>
+            <input type="text" class="form-control" placeholder="AdditionalDetails" name="AdditionalDetails" [(ngModel)]="ticket.additionalDetails" #AdditionalDetails="ngModel" maxlength="100" required
+            [class.is-invalid]="AdditionalDetails.touched && AdditionalDetails.invalid">
+            <small class="text-danger" [class.d-none]="AdditionalDetails.valid ||AdditionalDetails.untouched">Start date is required</small>
+        </div>
+        <button type="submit" [disabled]="TicketForm.invalid" class="btn btn-primary">Register</button>
+    </form>
+</div>
